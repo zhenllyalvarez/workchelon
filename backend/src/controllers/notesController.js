@@ -10,6 +10,22 @@ export async function getAllExpert(req, res) {
     }
 }
 
+export async function getOneExpert(req, res) {
+    try {
+        const { id } = req.params;
+        const findExpert = await seoExpert.findById(id);
+        
+        if(!findExpert) {
+            return res.status(404).json({ Message: "Expert not found!" });
+        }
+
+        res.status(200).json(findExpert);
+    } catch (error) {
+        console.log("Error in getOneExpert", error);
+        res.status(500).json({ Message: "Internal server error" });
+    }
+}
+
 export async function createExpert(req, res) {
     try {
         const { firstname, lastname, age, phonenumber, birthdate } = req.body;
