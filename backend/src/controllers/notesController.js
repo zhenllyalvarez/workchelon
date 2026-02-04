@@ -2,7 +2,7 @@ import seoExpert from "../../models/seoExpert.js";
 
 export async function getAllExpert(req, res) {
     try {
-        const seoexpert = await seoExpert.find();
+        const seoexpert = await seoExpert.find().sort({ createdAt: -1 });
         res.status(200).json(seoexpert);
     } catch (error) {
         console.log("Error in getAllExpert", error);
